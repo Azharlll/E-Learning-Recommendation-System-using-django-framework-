@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'app1/css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'app1/css/bootstrapsuper.min.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'app1/css/dataTables.bootstrap.min.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'app1/style.css' %}" />
+  <!--<link rel="stylesheet" type="text/css" href="{% static 'app1/css/jquery.countdown.css' %}" />
+  <script src="{% static 'app1/js/jquery.min.js' %}"></script>
+  <script src="{% static 'app1/js/jquery.countdown.js' %}"></script>
+  <script src="{% static 'app1/js/jquery.plugin.min.js' %}"></script>
+  <script src="{% static 'app1/js/js.cookie.min.js' %}"></script>-->
+  <script src="{% static 'app1/js/jquery.min.js' %}"></script>
+    <script src="{% static 'app1/js/js.cookie.min.js.map' %}"></script>
+  <script src="{% static 'app1/js/jquery.plugin.min.js' %}"></script>
+  <script src="{% static 'app1/js/jquery.countdown.js' %}"></script>
+  <script src="{% static 'app1/js/js.cookie.min.js' %}"></script>
+
+
+
+  <script src="{% static 'app1/js/app.js' %}"></script>
+  <script src="{% static 'app1/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'app1/js/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'app1/js/dataTables.bootstrap.min.js' %}"></script>
+    <meta charset="UTF-8">
+    <title>E-Learning</title>
+</head>
+<body >
+
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">E-Learning</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <!--<li><a href="/videos" id="videos">Video</a></li>
+        <li><a href="/audio">Audio</a></li>
+        <li><a href="/PPT">Presentation</a></li>-->
+        <li><a href="/profile">Profile</a></li>
+
+      </ul>
+
+      <ul class="nav navbar-right">
+
+        {% if user.is_authenticated %}
+          <li><a href="/logout">Logout</a></li>
+        {% else %}
+          <li><a href="/login" id="login">Login</a></li>
+        {% endif %}
+      </ul>
+      <ul class="nav navbar-right">
+        {% if user.is_authenticated %}
+          <li><p class="navbar-text" id="username">
+            Welcome, <a href="/rater/{{user.id}}">{{ user.username }}</a>
+          </p></li>
+        {% else %}
+          <li><p class="navbar-text">
+            Welcome, Guest
+          </p></li>
+        {% endif %}
+      </ul>
+
+      <ul class="nav navbar-right">
+        <li><div id="cd"></div></li>
+      </ul>
+
+
+    </div>
+  </div>
+</nav>
+    {% block body %}
+    {% endblock %}
+    <script>
+    /*Cookies.set('hides', hide=false, {
+       expires: 7,
+       path: '/'
+    });*/
+    $(document).ready(function() {
+      tohide();
+       var totalTime = 3600;//7200; // Amout of time (sec)
+       var halfTime = Math.floor(totalTime / 2);
+
+       if (!Cookies.get('cdTime')) {
+          var now = $.now(); // First time on page
+    			console.log(now);
+          Cookies.set('firstTime', now, {
+             expires: 7,
+             path: '/'
+          });
+          Cookies.set('cdTime', totalTime, {
+             expires: 7,
+             path: '/'
+          });
+
+          var runTimer = Cookies.get('cdTime');
+
+       } else {
+          var currentTime = $.now();
+    			console.log(currentTime);
+    			console.log(Cookies.get('firstTime'));
+          var usedTime = (currentTime - Cookies.get('firstTime')) / 1000; // Calculate and convert into seconds
+          var runTimer = Cookies.get('cdTime') - usedTime;
+       }
+       $('#cd').countdown({
+          until: runTimer,
+          compact: true,
+          onExpiry: EndCountdown,
+          //onTick: Callbacks,
+          layout: '{hnn}:{mnn}:{snn}'
+       });
+
+       /*function Callbacks(periods) {
+          if ($.countdown.periodsToSeconds(periods) === halfTime) {
+             $('#cd').addClass('halfway');
+          }
+          else if ($.countdown.periodsToSeconds(periods) <= 0) {
+             EndCountdown();
+          }
+       }*/
+
+       function EndCountdown() {
+          //$('#cd').removeClass('halfway').addClass('ended');
+          Cookies.set('hides', hide=true, {
+             expires: 7,
+             path: '/'
+          });
+          window.location = '/';
+       }
+    });
+/////////////////////////////////////////////////////////////////////////////////////////////
+function tohide(){
+  var hide = Cookies.get('hides')
+  if (hide){
+    HidetheElements();
+
+    console.log(hide);
+  }
+
+}
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+
+  function HidetheElements() {
+      var x = document.getElementsByName("material");
+    //var x = document.getElementsByName("animal");
+      var i;
+      for (i = 0; i < x.length; i++) {
+
+          if (x[i].style.display === "none") {
+              x[i].style.display = "block";
+          } else {
+              x[i].style.display = "none";
+          }
+      }
+
+
+  }
+
+  $('a[name=source]').click(function(){
+      alert("The Link was clicked.");
+    makeUnClickable()
+  });
+
+  function makeUnClickable() {
+      $('a[name^=material]').each(function () {
+          $(this).data('href', $(this).attr('href'));
+          $(this).removeAttr('href');
+      });
+  }
+
+  function makeClickable() {
+      $('a[name^=material]').each(function () {
+          $(this).attr('href', $(this).data('href'));
+      });
+  }
+
+    </script>
+    <!--<script src="{% static 'app1/js/jquery.min.js' %}"></script>
+    <script src="{% static 'app1/js/jquery.countdown.js' %}"></script>
+    <script src="{% static 'app1/js/jquery.plugin.min.js' %}"></script>
+    <script src="{% static 'app1/js/js.cookie.min.js' %}"></script>
+    <script src="{% static 'app1/js/app.js' %}"></script>
+    <script src="{% static 'app1/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'app1/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'app1/js/dataTables.bootstrap.min.js' %}"></script>-->
+
+</body>
+</html>

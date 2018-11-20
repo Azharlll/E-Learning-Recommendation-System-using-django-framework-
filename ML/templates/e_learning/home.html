@@ -1,0 +1,314 @@
+{% extends 'e_learning/base.html' %}
+{% load staticfiles %}
+{% block body %}
+
+<div class="container-fluid">
+<div class="row">
+  <div class="col-xs-7 col-sm-6 col-lg-8">
+    <p>
+    Technology has advanced so much that the geographical gap is bridged with the use of <br>tools that make you feel as if you are inside the classroom.<br> E-learning offers the ability to share material in all kinds of formats such as videos,<br> slideshows, word documents and PDFs.
+  </p>
+  </div>
+  <div class="col-xs-5 col-sm-6 col-lg-4">
+
+      <!--<a id="Sign" href="{% url 'register' %}"> <h1>Test your skill</h1></a>-->
+      <a id="Sign" href="http://192.168.43.116/moodle/my/" name="source"> <h1>Test your skill</h1></a>
+
+  <div id="test_your_skill_para">
+      <p>Once you complete the test your result be analysed <br>based on your actions and interests and you will be
+      <br>recommended to follow for your better improvement. &#9786 </p>
+
+
+
+
+
+  </div>
+  </div>
+</div>
+<br>
+<br>
+<div class="row" name="material">
+  <div class="col-xs-12 ">
+    Choose the modes of learning which suits you best:
+  </div>
+</div>
+
+<div class="row" name="material">
+<div class="vid-list-container">
+  <div class="vid-list">
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=V4.mp4" name="material_1">
+          <img src="{% static 'app1/images/Gif/V4.gif' %}" alt="Start Learning" style="width:100%">
+          <div class="caption">
+            <p>Video</p>
+            </div>
+            </a>
+            </div>
+            </div>
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=V5.mp4" name="material_2">
+          <img src="{% static 'app1/images/Gif/V5.gif' %}" alt="Start Learning" style="width:100%">
+          <div class="caption">
+            <p>Video</p>
+            </div>
+            </a>
+            </div>
+            </div>
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=V6.mp4" name="material_3">
+          <img src="{% static 'app1/images/Gif/V6.gif' %}" alt="Start Learning" style="width:100%">
+          <div class="caption">
+            <p>Video</p>
+            </div>
+            </a>
+            </div>
+            </div>
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=V1.mp4" name="material_4">
+          <img src="{% static 'app1/images/Gif/V1.gif' %}" alt="Start Learning" style="width:100%">
+          <div class="caption">
+            <p>Video</p>
+            </div>
+            </a>
+            </div>
+            </div>
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=V2.mp4" name="material_5">
+          <img src="{% static 'app1/images/Gif/V2.gif' %}" alt="Start Learning" style="width:100%">
+          <div class="caption">
+            <p>Video</p>
+          </div>
+        </a>
+      </div>
+      </div>
+
+    <div class="vid-item">
+        <div class="thumbnail">
+          <a href="{% url 'media' %}?offset=V3.mp4" name="material_6">
+            <img src="{% static 'app1/images/Gif/V3.gif' %}" alt="Start Learning" style="width:100%">
+            <div class="caption">
+              <p>Video</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=A4.mp3" name="material_7">
+          <img src="{% static 'app1/images/Gif/A1.jpg' %}" alt="Start Hearing" style="width:100%">
+          <div class="caption">
+            <p>Audio</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=A5.mp3" name="material_8">
+          <img src="{% static 'app1/images/Gif/A2.jpg' %}" alt="Start Hearing" style="width:100%">
+          <div class="caption">
+            <p>Audio</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=A6.mp3" name="material_9">
+          <img src="{% static 'app1/images/Gif/A3.jpg' %}" alt="Start Hearing" style="width:100%">
+          <div class="caption">
+            <p>Audio</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=A1.mp3" name="material_10">
+          <img src="{% static 'app1/images/Gif/A1.jpg' %}" alt="Start Hearing" style="width:100%">
+          <div class="caption">
+            <p>Audio</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=A2.mp3" name="material_11">
+          <img src="{% static 'app1/images/Gif/A2.jpg' %}" alt="Start Hearing" style="width:100%">
+          <div class="caption">
+            <p>Audio</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=A3.mp3" name="material_12">
+          <img src="{% static 'app1/images/Gif/A3.jpg' %}" alt="Start Hearing" style="width:100%">
+          <div class="caption">
+            <p>Audio</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=P1.mp4" name="material_13">
+          <img src="{% static 'app1/images/Gif/P1.gif' %}" alt="Start Notes" style="width:100%">
+          <div class="caption">
+            <p>PPT</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=P2.mp4" name="material_14">
+          <img src="{% static 'app1/images/Gif/P2.gif' %}" alt="Start Notes" style="width:100%">
+          <div class="caption">
+            <p>PPT</p>
+          </div>
+        </a>
+      </div>
+      </div>
+
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset=P3.mp4" name="material_15">
+          <img src="{% static 'app1/images/Gif/P3.gif' %}" alt="Start Notes" style="width:100%">
+          <div class="caption">
+            <p>PPT</p>
+          </div>
+        </a>
+      </div>
+      </div>
+  </div>
+  </div>
+
+  <!--</div>-->
+  <!--<div class="arrows" name="material">
+    <div class="arrow-left" name="material"><span class="glyphicon glyphicon-chevron-left" name="material"></i></div>
+    <div class="arrow-right" name="material"><span class="glyphicon glyphicon-chevron-right" name="material"></i></div>
+  </div>-->
+
+  <!-- JS FOR SCROLLING THE ROW OF THUMBNAILS -->
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $(".arrow-right").bind("click", function (event) {
+          event.preventDefault();
+          $(".vid-list-container").stop().animate({
+              scrollLeft: "+=336"
+          }, 750);
+      });
+      $(".arrow-left").bind("click", function (event) {
+          event.preventDefault();
+          $(".vid-list-container").stop().animate({
+              scrollLeft: "-=336"
+          }, 750);
+      });
+  });
+  /*//////////////////////////////////////////////////////////
+  var countDH = new Date().getSeconds()+5
+  var countDownDate = new Date()
+	countDownDate.setSeconds(countDH)
+//console.log(countDownDate)
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get todays date and time
+  var now = new Date()
+
+
+  // Find the distance between now an the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML =  hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    //makeUnClickable();
+    HidetheElements();
+    document.getElementById("Exam_Time").innerHTML = "Time to Take Exam";
+  }
+
+
+}, 1000);
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+function HidetheElements() {
+    var x = document.getElementsByName("material");
+	//var x = document.getElementsByName("animal");
+    var i;
+    for (i = 0; i < x.length; i++) {
+
+        if (x[i].style.display === "none") {
+            x[i].style.display = "block";
+        } else {
+            x[i].style.display = "none";
+        }
+    }
+
+}
+
+$('a[name=source]').click(function(){
+    alert("The Link was clicked.");
+	makeUnClickable()
+});
+
+function makeUnClickable() {
+    $('a[name^=material]').each(function () {
+        $(this).data('href', $(this).attr('href'));
+        $(this).removeAttr('href');
+    });
+}
+
+function makeClickable() {
+    $('a[name^=material]').each(function () {
+        $(this).attr('href', $(this).data('href'));
+    });
+}*/
+  </script>
+
+</div>
+<div class="arrows" name="material">
+  <div class="arrow-left"><span class="glyphicon glyphicon-chevron-left"></i></div>
+  <div class="arrow-right"><span class="glyphicon glyphicon-chevron-right"></i></div>
+</div>
+</div>
+
+
+<div class = "row">
+  <div class="col-xs-12 ">
+  <h1><a href="http://192.168.43.116/moodle/my/"><p id="Exam_Time"></p></a></h1>
+</div>
+</div>
+{% endblock %}

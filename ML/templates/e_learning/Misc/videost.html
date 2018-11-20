@@ -1,0 +1,30 @@
+{% extends 'e_learning/base.html' %}
+
+{% block body %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'app1/css/video-js.css' %}" />
+<script src="{% static 'app1/js/video.js'}"></script>
+<script src="{% static 'app1/js/videojs-extractor.js'}"></script>
+<!--<div class="row">
+  <div class="col-sm-4">-->
+    <div class="wrapper">
+       <div class="videocontent">
+         <video id="myPlayerID"
+         class="video-js vjs-default-skin vjs-16-9"
+         preload="auto"
+         width="640" height="264"
+         data-setup='{"fluid": true}'
+         controls>
+         <source src="http://192.168.43.116:9000/ser8.php/?file=time.mp4"  />
+        </video>
+<!--<script src="//players.brightcove.net/1507807800001/default_default/index.min.js"></script>-->
+
+<script >
+var myPlayer = videojs('myPlayerID');
+myPlayer.extractor(this);
+
+</script>
+
+</div>
+</div>
+{% endblock %}

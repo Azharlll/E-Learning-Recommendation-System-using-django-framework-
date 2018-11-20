@@ -1,0 +1,536 @@
+{% extends 'e_learning/base.html' %}
+{% load staticfiles %}
+{% block body %}
+<script src="{% static 'app1/js/d3.min.js' %}"></script>
+
+<div class="container-fluid">
+<div class="row">
+  <div class="col-lg-12 col-sm-12 col-xs-12 ">
+  <h1>  {{username}} </h1>
+  <legend>Scoreboard</legend>
+  <div class = "table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Your Score</th>
+        <th>Top Score</th>
+        <th>Module Recommended</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vocabulary</td>
+        <td>{{VocabTotal}}/115</td>
+        <td>{{TopVoc}}/115</td>
+        <td>{{VocabLabel}}</td>
+
+      </tr>
+      <tr>
+        <td>Grammer</td>
+        <td>{{GrammarTotal}}/115</td>
+        <td>{{TopGra}}/115</td>
+        <td>{{GrammarLabel}}</td>
+
+      </tr>
+      <tr>
+        <td>Reading</td>
+        <td>{{ReadingTotal}}/60</td>
+        <td>{{TopRea}}/60</td>
+        <td>{{ReadingLabel}}</td>
+
+      </tr>
+
+      <tr>
+        <td>Computer</td>
+        <td>{{ComputerTotal}}/10</td>
+        <td>{{TopComp}}/10</td>
+        <td>{{ComputerLabel}}</td>
+
+      </tr>
+
+      <tr>
+        <td>Writing</td>
+        <td>{{WritingTotal}}/50</td>
+        <td>{{TopWri}}/50</td>
+        <td>{{WritingLabel}}</td>
+
+      </tr>
+
+
+    </tbody>
+  </table>
+
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-lg-12">
+
+  <div class="container-fluid">
+    <legend>Recommended Materials </legend>
+<div class="vid-list-container">
+
+  <div class="vid-list">
+
+    {% for  x,y,z in VocabularyMaterials %}
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset={{x}}">
+          <img src="{% static 'app1/images/Gif/' %}{{z}}" alt="Start Learning" style="width:100%">
+          <div class="caption">
+            <p>{{y}}</p>
+            </div>
+            </a>
+            </div>
+            </div>
+            {% endfor %}
+
+    {% for  x,y,z in GrammerMaterials %}
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset={{x}}">
+          <img src="{% static 'app1/images/Gif/' %}{{z}}" alt="Start Learning" style="width:100%">
+          <div class="caption">
+            <p>{{y}}</p>
+            </div>
+            </a>
+            </div>
+            </div>
+            {% endfor %}
+
+    {% for  x,y,z in ReadingMaterials %}
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset={{x}}">
+          <img src="{% static 'app1/images/Gif/' %}{{z}}" alt="Start Learning" style="width:100%">
+          <div class="caption">
+            <p>{{y}}</p>
+            </div>
+            </a>
+            </div>
+            </div>
+            {% endfor %}
+
+
+    {% for  x,y,z in ComputerMaterials %}
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset={{x}}">
+          <img src="{% static 'app1/images/Gif/' %}{{z}}" alt="Start Learning" style="width:100%">
+          <div class="caption">
+            <p>{{y}}</p>
+            </div>
+            </a>
+            </div>
+            </div>
+            {% endfor %}
+
+    {% for  x,y,z in WritingMaterials %}
+    <div class="vid-item">
+      <div class="thumbnail">
+        <a href="{% url 'media' %}?offset={{x}}">
+          <img src="{% static 'app1/images/Gif/' %}{{z}}" alt="Start Learning" style="width:100%">
+          <div class="caption">
+            <p>{{y}}</p>
+            </div>
+            </a>
+            </div>
+            </div>
+            {% endfor %}
+
+        </div>
+      </div>
+      <div class="arrows">
+        <div class="arrow-left"><span class="glyphicon glyphicon-chevron-left"></i></div>
+        <div class="arrow-right"><span class="glyphicon glyphicon-chevron-right"></i></div>
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="container-fluid">
+  <div class="col-lg-12 col-sm-12 col-xs-12">
+  <legend>Charts</legend>
+
+  <div class="col-lg-6 col-sm-6 col-xs-6">
+    <legend>Scores</legend>
+    <div id="pie"></div>
+    <div> Score Chart of Your performance </div>
+ </div>
+
+
+
+ <div class="col-lg-6 col-sm-6 col-xs-6" >
+   <legend>Your Activity</legend>
+ <div id="chart"></div>
+ <div> Your Activity With media</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="row">
+  <div class="container-fluid">
+
+
+
+    <div class="row">
+      <div class="col-lg-12 col-sm-12 col-xs-12 ">
+
+      <div class="container-fluid">
+        <legend> Top Scores in Vocabulary </legend>
+<div class = "table-responsive">
+<table class="table table-striped">
+<thead>
+  <tr>
+    <th>User</th>
+    <th>Score</th>
+  </tr>
+</thead>
+<tbody>
+{% for  x,y in RowVoc %}
+<tr>
+<td>{{x}}</td>
+<td>{{y}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12 col-sm-12 col-xs-12 ">
+    <div class="container-fluid">
+      <legend> Top Scores in Grammer </legend>
+<div class = "table-responsive">
+<table class="table table-striped">
+<thead>
+<tr>
+  <th>User</th>
+  <th>Score</th>
+</tr>
+</thead>
+<tbody>
+{% for  x,y in RowGra %}
+<tr>
+<td>{{x}}</td>
+<td>{{y}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-lg-12 col-sm-12 col-xs-12 ">
+    <div class="container-fluid">
+      <legend> Top Scores in Reading </legend>
+<div class = "table-responsive">
+<table class="table table-striped">
+<thead>
+<tr>
+  <th>User</th>
+  <th>Score</th>
+</tr>
+</thead>
+<tbody>
+{% for  x,y in RowRea %}
+<tr>
+<td>{{x}}</td>
+<td>{{y}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12 col-sm-12 col-xs-12 ">
+    <div class="container-fluid">
+    <legend> Top Scores in Computer </legend>
+
+<div class = "table-responsive">
+<table class="table table-striped">
+<thead>
+<tr>
+  <th>User</th>
+  <th>Score</th>
+</tr>
+</thead>
+<tbody>
+{% for  x,y in RowComp %}
+<tr>
+<td>{{x}}</td>
+<td>{{y}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-sm-12 col-xs-12 ">
+    <div class="container-fluid">
+    <legend> Top Scores in Writing </legend>
+
+<div class = "table-responsive">
+<table class="table table-striped">
+<thead>
+<tr>
+  <th>User</th>
+  <th>Score</th>
+</tr>
+</thead>
+<tbody>
+{% for  x,y in RowWri %}
+<tr>
+<td>{{x}}</td>
+<td>{{y}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+    <!--<svg id="pie" width="300" height="200" viewBox="0 0 300 200"
+      preserveAspectRatio="xMidYMid meet"> </svg>-->
+<script>
+
+
+
+  a = {{VocabTotal}};
+  b = {{GrammarTotal}};
+  c = {{ReadingTotal}};
+  d = {{ComputerTotal}};
+  e = {{WritingTotal}}
+  console.log(a);
+  var w = $("div#pie").width();
+  var chartDiv = document.getElementById("pie");
+  var www = chartDiv.clientWidth;
+  var wwh = chartDiv.clientHeight;
+  console.log(www,wwh);
+
+
+    //var data = [a,b,c,d,e];
+    var margin = {top: 20, right: 20, bottom: 20, left: 20};
+    var data = [{"label":"Vocabulary", "value":a},
+            {"label":"Grammer", "value":b},
+            {"label":"Reading", "value":c},
+            {"label":"Computer", "value":d},
+            {"label":"Writing", "value":e}];
+
+            var svg = d3.select("div#pie")
+                .classed("svg-container", true)
+                .append("svg")
+                .attr("width",w  - margin.left - margin.right)
+                .attr("height",w - margin.top - margin.bottom)
+                .attr("preserveAspectRatio", "xMinYMin meet")
+                .attr("viewBox", "0 0 "+w+" "+w+"")
+                .classed("svg-content-responsive", true),
+            width = +svg.attr("width"),
+            height = +svg.attr("height"),
+            radius = width / 2,
+            g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        var color = d3.scaleOrdinal(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+        var pie = d3.pie()
+            .sort(null)
+            .value(function(d) { return d.value; });
+
+        var path = d3.arc()
+            .outerRadius(radius - 10)
+            .innerRadius(0);
+
+        var label = d3.arc()
+            .outerRadius(radius - 40)
+            .innerRadius(radius - 40);
+
+
+
+          var arc = g.selectAll(".arc")
+            .data(pie(data))
+            .enter().append("g")
+              .attr("class", "arc");
+
+          arc.append("path")
+              .attr("d", path)
+              .attr("fill", function(d) { return color(d.data.label); });
+
+          arc.append("text")
+              .attr("transform", function(d) { return "translate(" + label.centroid(d) + ")"; })
+              .attr("dy", "0.35em")
+              .text(function(d) { return d.data.label; });
+
+</script>
+
+
+
+<!--<svg name="bar" id="chart" width="1000" height="500" viewBox="0 0 1000 500"
+  preserveAspectRatio="xMidYMid meet"></svg>-->
+    <script>
+          /*var chart = $("#chart"),
+          aspect = chart.width() / chart.height(),
+          container = chart.parent();
+        $(window).on("resize", function() {
+          var targetWidth = container.width();
+          chart.attr("width", targetWidth);
+          chart.attr("height", Math.round(targetWidth / aspect));
+        }).trigger("resize");*/
+        var w = $("div#chart").width();
+
+        //var cont = $("div#chart").parent();
+        //console.log(cont);
+        //console.log(cont.width());
+        //console.log(w,h,w/h,Math.round(w/(w/h)));
+
+      var margin = {top: 20, right: 20, bottom: 20, left: 20};
+    	var svg = d3.select("div#chart")
+                  .classed("svg-container", true)
+                  .append("svg")
+                  .attr("width",w  - margin.left - margin.right)
+    							.attr("height",w - margin.top - margin.bottom)
+                  .attr("preserveAspectRatio", "xMinYMin meet")
+                  .attr("viewBox", "0 0 "+w+" "+w+"")
+     //class to make it responsive
+                  .classed("svg-content-responsive", true),
+    	    width = +svg.attr("width") - margin.left - margin.right,
+    	    height = +svg.attr("height") - margin.top - margin.bottom,
+    	    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+
+    	var x0 = d3.scaleBand()
+    	    .rangeRound([0, width])
+    	    .paddingInner(0.1);
+
+    	var x1 = d3.scaleBand()
+    	    .padding(0.05);
+
+    	var y = d3.scaleLinear()
+    	    .rangeRound([height, 0]);
+
+    	var z = d3.scaleOrdinal()
+    	    .range(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c', "#ff8c00"]);
+
+    			d3.csv("{% static 'app1/csv/tmp.csv' %}", function(d, i, columns) {
+    			  for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
+    			  return d;
+    			}).then(function(data) {
+
+
+    				  var keys = data.columns.slice(1);
+
+    				  x0.domain(data.map(function(d) { return d.Type; }));
+    				  x1.domain(keys).rangeRound([0, x0.bandwidth()]);
+    				  y.domain([0, d3.max(data, function(d) { return d3.max(keys, function(key) { return d[key]; }); })]).nice();
+
+    				  g.append("g")
+    				    .selectAll("g")
+    				    .data(data)
+    				    .enter().append("g")
+    				      .attr("transform", function(d) { return "translate(" + x0(d.Type) + ",0)"; })
+    				    .selectAll("rect")
+    				    .data(function(d) { return keys.map(function(key) { return {key: key, value: d[key]}; }); })
+    				    .enter().append("rect")
+    				      .attr("x", function(d) { return x1(d.key); })
+    				      .attr("y", function(d) { return y(d.value); })
+    				      .attr("width", x1.bandwidth())
+    				      .attr("height", function(d) { return height - y(d.value); })
+    				      .attr("fill", function(d) { return z(d.key); });
+
+    				  g.append("g")
+    				      .attr("class", "axis")
+    				      .attr("transform", "translate(0," + height + ")")
+    				      .call(d3.axisBottom(x0));
+
+    				  g.append("g")
+    				      .attr("class", "axis")
+    				      .call(d3.axisLeft(y).ticks(null, "s"))
+    				      .append("text")
+    				      .attr("x", 2)
+    				      .attr("y", y(y.ticks().pop()) + 0.5)
+    				      .attr("dy", "0.32em")
+    				      .attr("fill", "#000")
+    				      .attr("font-weight", "bold")
+    				      .attr("text-anchor", "start")
+    				      .text("Number of Times");
+              var n = data.length/2;
+              var itemWidth =80;
+              var itemHeight = 18;
+
+    				  var legend = g.append("g")
+    				      .attr("font-family", "sans-serif")
+    				      .attr("font-size", 14)
+    				      .attr("text-anchor", "end")
+    				    .selectAll("g")
+    				    .data(keys.slice().reverse())
+    				    .enter().append("g")
+                .attr("class","legend")
+    				      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+    				  legend.append("rect")
+    				      .attr("x", width-19)
+    				      .attr("width", 19)
+    				      .attr("height", 19)
+    				      .attr("fill", z);
+
+    				  legend.append("text")
+    				      .attr("x", width-24)
+    				      .attr("y", 12)
+    				      .attr("dy", "0.50em")
+    				      .text(function(d) { return d; });
+    				});
+
+
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $(".arrow-right").bind("click", function (event) {
+            event.preventDefault();
+            $(".vid-list-container").stop().animate({
+                scrollLeft: "+=336"
+            }, 750);
+        });
+        $(".arrow-left").bind("click", function (event) {
+            event.preventDefault();
+            $(".vid-list-container").stop().animate({
+                scrollLeft: "-=336"
+            }, 750);
+        });
+    });
+    </script>
+
+
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'e_learning/base.html' %}
+{% load staticfiles %}
+{% block body %}
+
+<div class="outer">
+
+    <div class="notes_box">
+          {% block content %}
+
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color:white ">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">save</button>
+  </form>
+{% endblock %}
+<hr>
+<div class="two_choose_mode">
+            <table cellspacing="10" c>
+
+           <th>     <a id="two_img2">
+                 <figure>
+                 <img id="two_modes_img"src="{% static 'app1/images/audio_learn.jpg' %}">
+                    <figcaption><a id="two_Sign" href="{% url 'audio_learn' %}">Audio based learning</a></figcaption>
+            </figure>
+             </a>
+           </th>
+
+             <th>   <a id="two_img3">
+                 <figure>
+                 <img id="two_modes_img" src="{% static 'app1/images/PPT.png' %}">
+                    <figcaption><a id="two_Sign" href="{% url 'ppt_learn' %}">PPT based learning</a></figcaption>
+            </figure>
+             </a>
+             </th>
+
+                </table>
+        </div>
+
+
+</div>
+
+
+
+
+        <video class="vido" width="700" height="400" controls>
+  <source src="{% static 'app1/images/time.mp4' %}" type="video/mp4">
+        </video>
+
+
+        <div class="summary">
+
+        <p>Summary: You have to find the main idea and ignore minor details. Learning how to write a good summary is important,
+            especially if you want to do research, write university essays or business reports.</p>
+
+
+    </div>
+
+
+
+</div>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'e_learning/base.html' %}
+{% block body %}
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-xs-8">
+  <form method="post" action="">
+    <div class="form-group">
+  {% csrf_token %}
+
+    <legend>Register</legend>
+    <!--<div class="table-responsive">-->
+      {{ userform.as_ul }}
+    <!--</div>-->
+    <!--<div class="table-responsive">-->
+      {{ raterform.as_ul }}
+    <!--</div>-->
+  <button type="submit" class="btn btn-default">SignUp</button>
+</div>
+  </form>
+</div>
+</div>
+</div>
+
+{% endblock %}
